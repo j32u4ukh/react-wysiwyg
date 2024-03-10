@@ -4,7 +4,7 @@
 import "./styles.css";
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Page1 from "./pages/Page1";
@@ -34,19 +34,21 @@ export default function App() {
       <BrowserRouter keyLength={12} />
     */
     <BrowserRouter basename="/">
-      <Header />
       {/* Routes 要包在 Route 的外層，在不同的 url 渲染不同的組件
           path：路徑
           element：要渲染的组件 
 
         * 在跳轉路由時，如果路徑是/開頭的是絕對路由，否則為相對路由，即相對於當前 URL 進行改變 */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="page1" element={<Page1 />} />
-        <Route path="page2" element={<Page2 />} />
-        {/* 全匹配路由
+      <Routes>        
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="page1" element={<Page1 />} />
+          <Route path="page2" element={<Page2 />} />
+
+          {/* 全匹配路由
           設定 Route path="*" 在所有路由的最下方，當上面的路徑都沒有匹配到時，就會顯示此組件，可用於 404 找不到頁面 */}
-        <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
