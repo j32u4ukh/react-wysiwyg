@@ -1,5 +1,3 @@
-
-import "./styles.css";
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -9,6 +7,7 @@ import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import Product from "./pages/Product";
 import VitePage from "./pages/VitePage";
+import Restaurant from "./pages/Restaurant";
 
 export default function App() {
   return (
@@ -53,7 +52,7 @@ export default function App() {
           設定 Route path="*" 在所有路由的最下方，當上面的路徑都沒有匹配到時，就會顯示此組件，可用於 404 找不到頁面 */}
           <Route path="*" element={<NotFound />} />
         </Route>
-
+        <Route path="/restaurant" element={<Restaurant/>} />
       </Routes>
     </BrowserRouter>
   );
