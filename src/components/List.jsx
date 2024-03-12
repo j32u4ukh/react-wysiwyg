@@ -3,7 +3,7 @@ import Styles from './List.module.css';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function List(props) {
-  const { name, price, isLimited, image } = props.item;
+  const { name, price, isLimited, image, desrc } = props.item;
   return (
     <li className={Styles.item}>
       <LazyLoadImage
@@ -18,6 +18,9 @@ export default function List(props) {
       <div className={Styles.name}>
         <span>{name}</span>
         {isLimited && <span className={Styles.limited}>(限量供應)</span>}
+      </div>
+      <div className={Styles.desrc}>
+        <div dangerouslySetInnerHTML={{ __html: desrc }}></div>
       </div>
       <span>${price}</span>
       <Counter />

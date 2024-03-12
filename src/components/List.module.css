@@ -13,3 +13,9 @@
   color: red;
   font-size: 12px;
 }
+
+.desrc {
+  font-size: 12px;
+  word-break: break-all;
+  width: 150px;
+}
