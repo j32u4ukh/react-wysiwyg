@@ -1,4 +1,6 @@
 import List from "../components/List";
+import Styles from '../css/Restaurant.module.css'
+
 
 export default function Restaurant(){
     const menu = [
@@ -16,8 +18,9 @@ export default function Restaurant(){
     ];
 
     return (
-        <div>
-          <h1>React 熱炒店</h1>
+      <div className={Styles.wrapper}>        
+        <div className={Styles.container}>
+          <h1 className={Styles.title}>React 熱炒店</h1>
           <ul>
             {menu.map((item, index) => {
                 return (<List
@@ -29,5 +32,6 @@ export default function Restaurant(){
             })}
           </ul>
         </div>
+      </div>
       );
 }

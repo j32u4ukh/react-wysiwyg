@@ -1,10 +1,10 @@
 import Counter from "./Counter";
+import Styles from './List.module.css';
 
 export default function List(props) {
   return (
-    <li>
-      <span>{props.index + 1}.</span>
-      <span>{props.name}</span>
+    <li className={Styles.item}>
+      <div className={Styles.name}>{props.name}</div>
       <span>${props.price}</span>
       <Counter />
     </li>

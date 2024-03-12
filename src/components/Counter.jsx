@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Styles from "./Counter.module.css";
 
 export default function Counter(){    
   const [couter, setCouter] = useState(0);
@@ -12,10 +13,10 @@ export default function Counter(){
   }
 
   return (
-    <span>
-        <button type='button' onClick={addCount}>+</button>
-        <button type='button' onClick={reduceCount}>-</button>
-        <span>{couter}</span>
-    </span>
+    <div className={Styles["btn-box"]}>
+        <button type='button' className={Styles.btn} onClick={addCount}>+</button>
+        <button type='button' className={Styles.btn} onClick={reduceCount}>-</button>
+        <span className={Styles.number}>{couter}</span>
+    </div>
   );
 }
