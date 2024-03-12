@@ -6,5 +6,10 @@
 }
 
 .name {
-  width: 100px;
+  width: 160px;
+}
+
+.limited {
+  color: red;
+  font-size: 12px;
 }
