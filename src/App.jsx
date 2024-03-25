@@ -1,17 +1,18 @@
-import './App.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import './App.css';
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import MemberPage from './pages/MemberPage';
 import NotFound from "./pages/NotFound";
+import Order from "./pages/Order";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import Product from "./pages/Product";
-import VitePage from "./pages/VitePage";
+import QuillPage from "./pages/QuillPage";
 import Restaurant from "./pages/Restaurant";
-import Order from "./pages/Order";
 import ShoppingCar from './pages/ShoppingCar';
-import MemberPage from './pages/MemberPage';
 import TodoPage from "./pages/TodoPage";
+import VitePage from "./pages/VitePage";
 
 export default function App() {
   return (
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="/shopping-car" element={<ShoppingCar/>}/>
         <Route path="/member" element={<MemberPage/>}/>
         <Route path="/todo" element={<TodoPage/>}/>
+        <Route path="/quill" element={<QuillPage/>}/>
       </Routes>
     </BrowserRouter>
   );
