@@ -1,10 +1,11 @@
 import ImageResize from 'quill-image-resize-module-react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // 引入編輯器樣式
 
 // 引入 imageDrop 模組
 import Quill from 'quill';
+// import QuillImageDropAndPaste from 'quill-image-drop-and-paste';
 
 // 註冊模組
 Quill.register('modules/imageResize', ImageResize);
@@ -15,22 +16,25 @@ function MyEditor() {
   const [value, setValue] = useState('');
 
   const handleChange = (content) => {
+    const editor = quillRef.current.getEditor();
+    const qcontent = editor.getContents();
+    console.log(`qcontent: ${JSON.stringify(qcontent, null, 4)}`);
     setValue(content);
   };
 
-  const modules = {
+  const modules = {    
     toolbar: {
       container: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
+        ['bold', 'italic', 'underline', 'strike', 'color'],
+        // ['blockquote', 'code-block'],
         [{ list: 'ordered' }, { list: 'bullet' }],
-        [{ indent: '-1' }, { indent: '+1' }],
-        [{ direction: 'rtl' }],
+        // [{ indent: '-1' }, { indent: '+1' }],
+        // [{ direction: 'rtl' }],
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ font: [] }],
-        [{ align: [] }],
+        // [{ font: [] }],
+        // [{ align: [] }],
         ['link', 'image', 'video'],
-        ['clean'],
+        // ['clean'],
       ],
     },
     imageResize: {},
@@ -43,50 +47,16 @@ function MyEditor() {
     //     // 例如，將圖片上傳到您的伺服器，然後插入到編輯器中
     //     // 這裡只是一個範例，您需要根據您的需求來實現圖片的上傳和插入
     //     // 將圖片插入編輯器
-    //     imageData.minify({
-    //       maxWidth: 320,
-    //       maxHeight: 320,
-    //       quality: .7
-    //     }).then((miniImageData) => {
-    //       const blob = miniImageData.toBlob()
-    //       // const file = miniImageData.toFile('my_cool_image.png')
-    
-    //       console.log(`type: ${type}`)
-    //       console.log(`dataUrl: ${imageDataUrl}`)
-    //       console.log(`blob: ${blob}`)
-    //       // console.log(`file: ${file}`)
-    
-    //       // 創建一個新的 `FileReader` 對象
-    //       const reader = new FileReader();
-
-    //       // 讀取圖片文件
-    //       reader.readAsDataURL(blob);
-
-    //       // 讀取成功後，將圖片插入編輯器
-    //       reader.onload = () => {
-    //         const editor = quillRef.current.getEditor();
-    //         // const image = editor.insertEmbed(editor.getSelection().index + 1, 'image', reader.result);
-
-    //         let index = (editor.getSelection() || {}).index
-    //         console.log(`index: ${index}`)
-    //         if (index === undefined || index < 0) {
-    //           index = quillRef.current.getLength()
-    //         }
-    //         console.log(`index: ${index}`)
-    //         editor.insertEmbed(index, 'image', reader.result, 'user')
-
-    //         // // 設置圖片的寬度和高度
-    //         // image.setAttributes({
-    //         //   width: imageData.width,
-    //         //   height: imageData.height
-    //         // });
-    //       };
-    //     })
-
-
-      // },
+    //   },
     // },
   };
+
+  useEffect(()=>{
+    const editor = quillRef.current.getEditor();
+    const content = editor.getContents();
+    console.log(`content: ${JSON.stringify(content, null, 4)}`);
+    // editor.insertEmbed(10, 'image', 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7aab8e12b56a4eac9bbc779bd7da420c~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp');
+  }, []);
 
   return (
     <div>
@@ -94,6 +64,7 @@ function MyEditor() {
       <ReactQuill
         ref={quillRef}
         theme="snow"
+        formats={['image']}
         value={value}
         onChange={handleChange}
         modules={modules} // 傳遞模組設定
